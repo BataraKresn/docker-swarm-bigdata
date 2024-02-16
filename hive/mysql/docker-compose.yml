@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Bigdata2024
+      MYSQL_DATABASE: hive_metastore
+      MYSQL_USER: hive
+      MYSQL_PASSWORD: bigdata2024
+    deploy:
+      replicas: 1
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+networks:
+  hadoop-net:
+    driver: overlay
+
+volumes:
+  mysql-data:
+    driver: local
